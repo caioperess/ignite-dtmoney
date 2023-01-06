@@ -1,16 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { TransactionDTO } from "../../dtos/transactionDTO";
-import { api } from "../../services/api";
+import React from "react";
+import { useTransactions } from "../../hooks/useTransactions";
 import { Container } from "./styles";
 
 export function TransactionsTable() {
-  const [transactions, setTransactions] = useState<TransactionDTO[]>([]);
-
-  useEffect(() => {
-    api
-      .get("/transactions")
-      .then((response) => setTransactions(response.data.transactions));
-  }, []);
+  const { transactions } = useTransactions();
 
   return (
     <Container>
